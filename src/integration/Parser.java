@@ -21,14 +21,11 @@ public class Parser {
             boolean foundPerson = false;
             String line;
 
-            while(true){
-                //File empty?
-                if((line = reader.readLine()) == null){
-                    break;
-                }
+            while((line = reader.readLine()) != null){
+                if (line.trim().isEmpty()) continue;
 
                 PersonModel person = new PersonModel("", "", null, null, null);
-                String[] personValues = line.split("|");
+                String[] personValues = line.split("\\|");
 
                 //First iteration builds the person
                 person.firstName = personValues[1];
@@ -48,7 +45,7 @@ public class Parser {
                         break;
                     }                  
                     
-                    String[] inputValues = line.split("|");
+                    String[] inputValues = line.split("\\|");
 
                     switch(propertyType){  
                         case 'T':
@@ -64,6 +61,9 @@ public class Parser {
                             int birthDate = Integer.parseInt(inputValues[1]);
                             FamilyModel familyMember = new FamilyModel(inputValues[0], birthDate, null, null);
                             person.familyMembers.add(familyMember);
+                        break;
+
+                        default: 
                         break;
                     }
                     
