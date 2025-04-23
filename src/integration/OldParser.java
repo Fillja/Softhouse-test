@@ -54,7 +54,7 @@ public class OldParser {
     
                         case 'A':
                             String zip = inputValues.length>2 ? inputValues[2] : null; 
-                            person.adresses = Optional.of(new AddressModel(inputValues[0], inputValues[1], Optional.of(zip)));
+                            person.addresses = Optional.of(new AddressModel(inputValues[0], inputValues[1], Optional.of(zip)));
                         break;
     
                         case 'F':

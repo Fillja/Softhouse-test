@@ -56,7 +56,7 @@ public class Parser {
                             currentFamily.addresses = Optional.of(addresses);
                         }
                         else if (currentPerson != null) {
-                            currentPerson.adresses = Optional.of(addresses);
+                            currentPerson.addresses = Optional.of(addresses);
                         }
                     break;
 
@@ -72,7 +72,7 @@ public class Parser {
                     break;
                 }
             }
-
+            reader.close();
             return personList;
     
         }catch(IOException e){

@@ -8,16 +8,16 @@ public class PersonModel {
 
     public String lastName;
     
-    public Optional<AddressModel> adresses;
+    public Optional<AddressModel> addresses;
 
     public Optional<PhoneModel> phoneNumbers;
 
     public List<FamilyModel> familyMembers;
 
-    public PersonModel(String firstName, String lastName, Optional<AddressModel> adresses, Optional<PhoneModel> phoneNumbers,  List<FamilyModel> familyMembers){
+    public PersonModel(String firstName, String lastName, Optional<AddressModel> addresses, Optional<PhoneModel> phoneNumbers,  List<FamilyModel> familyMembers){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.adresses = adresses;
+        this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
         this.familyMembers = familyMembers;
     }

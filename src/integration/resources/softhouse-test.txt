@@ -9,13 +9,13 @@ T|073-101802|08-101802
 P|Boris|Johnson
 A|10 Downing Street|London
 
-P|Carl Gustaf|Bernadotte
-T|0768-101801|08-101801
-A|Drottningholms slott|Stockholm|10001
-F|Victoria|1977
-A|Haga Slott|Stockholm|10002
-F|Carl Philip|1979
-T|0768-101802|08-101802
+P|Robin|Gombkötö
+T|0701-234567|0454-12345
+A|Årydsvägen 125|Åryd|37496
+F|Lina|1999
+A|Årydsvägen 125|Åryd|37496
+F|Nicole|1997
+T|0768-123456|0454-16808
 
-P|Barack|Obama
-A|1600 Pennsylvania Avenue|Washington, D.C
+P|Michael|Jordan
+A|790 W. Chestnut Avenue|Monrovia
