@@ -40,10 +40,10 @@
     </person>
     <person>
         <firstName>Robin</firstName>
-        <lastname>Gombkötö</lastname>
+        <lastname>Test</lastname>
         <address>
-            <street>Årydsvägen 125</street>
-            <city>Åryd</city>
+            <street>Testvägen 5</street>
+            <city>Trensum</city>
             <zip>37496</zip>
         </address>
         <phone>
@@ -54,8 +54,8 @@
             <name>Lina</name>
             <born>1999</born>
             <address>
-                <street>Årydsvägen 125</street>
-                <city>Åryd</city>
+                <street>Testvägen 5</street>
+                <city>Trensum</city>
                 <zip>37496</zip>
             </address>
         </family>
@@ -64,7 +64,7 @@
             <born>1997</born>
             <phone>
                 <mobile>0768-123456</mobile>
-                <landline>0454-16808</landline>
+                <landline>0454-155678</landline>
             </phone>
         </family>
     </person>

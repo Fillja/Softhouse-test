@@ -9,13 +9,13 @@ T|073-101802|08-101802
 P|Boris|Johnson
 A|10 Downing Street|London
 
-P|Robin|Gombkötö
+P|Robin|Test
 T|0701-234567|0454-12345
-A|Årydsvägen 125|Åryd|37496
+A|Testvägen 5|Trensum|37496
 F|Lina|1999
-A|Årydsvägen 125|Åryd|37496
+A|Testvägen 5|Trensum|37496
 F|Nicole|1997
-T|0768-123456|0454-16808
+T|0768-123456|0454-155678
 
 P|Michael|Jordan
 A|790 W. Chestnut Avenue|Monrovia
