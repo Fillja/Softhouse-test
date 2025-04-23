@@ -2,7 +2,7 @@ package src.integration.models;
 
 import java.util.Optional;
 
-//Zip is kept optional for international purposes
+// Zip is kept optional for international purposes.
 public class AddressModel {
     public String street;
 

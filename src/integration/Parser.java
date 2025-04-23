@@ -14,66 +14,71 @@ import src.integration.models.PhoneModel;
 
 public class Parser {
  
-    public void ParseFile(){
-        try{
-            BufferedReader reader = Files.newBufferedReader(Paths.get("src/integration/resources/softhouse.txt"));
+    public List<PersonModel> ParseFile(String file){
+
+        try{     
+            BufferedReader reader = Files.newBufferedReader(Paths.get(file));
             List<PersonModel> personList = new LinkedList<>();
-            boolean foundPerson = false;
+
+            //State management
+            PersonModel currentPerson = null;
+            FamilyModel currentFamily = null;
             String line;
 
             while((line = reader.readLine()) != null){
                 if (line.trim().isEmpty()) continue;
 
-                PersonModel person = new PersonModel("", "", null, null, null);
-                String[] personValues = line.split("\\|");
+                String[] lineValues = line.split("\\|");
 
-                //First iteration builds the person
-                person.firstName = personValues[1];
-                person.lastName = personValues[2];
 
-                while (!foundPerson) { 
-                    char propertyType = (char)reader.read();
-                    
-                    //A secondary person has been found, therefore create a new model
-                    if(propertyType == 'P'){
-                        foundPerson = true;
-                        break;
-                    }
+                switch(lineValues[0]){  
+                    case "P":
+                        //Tracking the state by instantiating a new person and resetting family member
+                        currentPerson = new PersonModel(lineValues[1], lineValues[2], Optional.empty(), Optional.empty(), new LinkedList<>());
+                        personList.add(currentPerson);
+                        currentFamily = null;
+                    break;
 
-                    //File empty?
-                    if((line = reader.readLine()) == null){
-                        break;
-                    }                  
-                    
-                    String[] inputValues = line.split("\\|");
+                    case "T":
+                        PhoneModel phoneNumbers = new PhoneModel(lineValues[1], lineValues[2]);
+                        if(currentFamily != null){
+                            currentFamily.phoneNumbers = Optional.of(phoneNumbers);
+                        }
+                        else if(currentPerson != null){
+                            currentPerson.phoneNumbers = Optional.of(phoneNumbers);
+                        }
+                    break;
 
-                    switch(propertyType){  
-                        case 'T':
-                            person.phoneNumbers = Optional.of(new PhoneModel(inputValues[0], inputValues[1]));
-                        break;
-    
-                        case 'A':
-                            String zip = inputValues.length>2 ? inputValues[2] : null; 
-                            person.adresses = Optional.of(new AddressModel(inputValues[0], inputValues[1], Optional.of(zip)));
-                        break;
-    
-                        case 'F':
-                            int birthDate = Integer.parseInt(inputValues[1]);
-                            FamilyModel familyMember = new FamilyModel(inputValues[0], birthDate, null, null);
-                            person.familyMembers.add(familyMember);
-                        break;
+                    case "A":
+                        String zip = lineValues.length>3 ? lineValues[3] : null; 
+                        AddressModel addresses = new AddressModel(lineValues[1], lineValues[2], Optional.ofNullable(zip));
+                        if(currentFamily != null){
+                            currentFamily.addresses = Optional.of(addresses);
+                        }
+                        else if (currentPerson != null) {
+                            currentPerson.adresses = Optional.of(addresses);
+                        }
+                    break;
 
-                        default: 
-                        break;
-                    }
-                    
+                    case "F":
+                        int birthDate = Integer.parseInt(lineValues[2].trim());
+                        currentFamily = new FamilyModel(lineValues[1], birthDate, Optional.empty(), Optional.empty());
+                        if(currentPerson != null){
+                            currentPerson.familyMembers.add(currentFamily);
+                        }
+                    break;
+
+                    default: 
+                    break;
                 }
-
-                personList.add(person);
             }
+
+            return personList;
     
         }catch(IOException e){
             System.out.println("Error reading file: " + e.getMessage());
         }
+
+        return new LinkedList<>();
     }
 }
