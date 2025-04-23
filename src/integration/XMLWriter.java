@@ -17,7 +17,7 @@ import src.integration.models.PersonModel;
 
 public class XMLWriter {
     
-    public void PrintToXML(List<PersonModel> list){
+    public boolean PrintToXML(List<PersonModel> list){
         try {
             DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = docBuilder.newDocument();
@@ -90,8 +90,11 @@ public class XMLWriter {
             StreamResult result = new StreamResult(new File("./src/integration/resources/output.xml"));
             transformer.transform(source, result);
 
+            return true;
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
