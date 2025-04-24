@@ -18,4 +18,4 @@ F|Nicole|1997
 T|0768-123456|0454-155678
 
 P|Michael|Jordan
-A|790 W. Chestnut Avenue|Monrovia
+T|0768-123456|0454-13213
