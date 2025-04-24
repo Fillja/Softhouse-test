@@ -33,6 +33,10 @@ public class Parser {
 
                 switch(lineValues[0]){  
                     case "P":
+                        if(IsEmptyField(lineValues, line)){
+                            break;
+                        }
+                        
                         //Tracking the state by instantiating a new person and resetting family member
                         currentPerson = new PersonModel(lineValues[1], lineValues[2], Optional.empty(), Optional.empty(), new LinkedList<>());
                         personList.add(currentPerson);
@@ -40,6 +44,10 @@ public class Parser {
                     break;
 
                     case "T":
+                        if(IsEmptyField(lineValues, line)){
+                            break;
+                        }
+
                         PhoneModel phoneNumbers = new PhoneModel(lineValues[1], lineValues[2]);
                         if(currentFamily != null){
                             currentFamily.phoneNumbers = Optional.of(phoneNumbers);
@@ -50,6 +58,10 @@ public class Parser {
                     break;
 
                     case "A":
+                        if(IsEmptyField(lineValues, line)){
+                            break;
+                        }
+
                         String zip = lineValues.length>3 ? lineValues[3] : null; 
                         AddressModel addresses = new AddressModel(lineValues[1], lineValues[2], Optional.ofNullable(zip));
                         if(currentFamily != null){
@@ -61,6 +73,10 @@ public class Parser {
                     break;
 
                     case "F":
+                        if(IsEmptyField(lineValues, line)){
+                            break;
+                        }
+
                         int birthDate = Integer.parseInt(lineValues[2].trim());
                         currentFamily = new FamilyModel(lineValues[1], birthDate, Optional.empty(), Optional.empty());
                         if(currentPerson != null){
@@ -73,6 +89,8 @@ public class Parser {
                 }
             }
             reader.close();
+
+            //Not handled "lazily"
             return personList;
     
         }catch(IOException e){
@@ -80,5 +98,14 @@ public class Parser {
         }
 
         return new LinkedList<>();
+    }
+
+    public static boolean IsEmptyField(String[] array, String line){
+        if(array.length < 3 || array[1].isBlank() || array[2].isBlank()){
+            System.out.println("Invalid line " + line);
+            return true;
+        }
+
+        return false;
     }
 }
