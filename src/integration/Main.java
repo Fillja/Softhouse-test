@@ -1,7 +1,7 @@
 package src.integration;
 
-import src.integration.models.FamilyModel;
-import src.integration.models.PersonModel;
+import src.integration.models.Family;
+import src.integration.models.Person;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class Main {
         Parser parser = new Parser();
         var personList = parser.ParseFile(file);
 
-        for (PersonModel person : personList) {
+        for (Person person : personList) {
             System.out.println("---- Person ----");
             System.out.println("Name: " + person.firstName + " " + person.lastName);
 
@@ -36,7 +36,7 @@ public class Main {
                 person.addresses.get().zip.ifPresent(zip -> System.out.println("  Zip: " + zip));
             }
 
-            for (FamilyModel family : person.familyMembers) {
+            for (Family family : person.familyMembers) {
                 System.out.println("---- Family Member ----");
                 System.out.println("Name: " + family.name);
                 System.out.println("Born: " + family.birthDate);

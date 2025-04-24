@@ -2,16 +2,16 @@ package src.integration.models;
 
 import java.util.Optional;
 
-public class FamilyModel {
+public class Family {
     public String name;
 
     public int birthDate; 
 
-    public Optional<PhoneModel> phoneNumbers;
+    public Optional<Phone> phoneNumbers;
 
-    public Optional<AddressModel> addresses;
+    public Optional<Address> addresses;
 
-    public FamilyModel(String name, int birthDate, Optional<PhoneModel> phoneNumbers, Optional<AddressModel> addresses){
+    public Family(String name, int birthDate, Optional<Phone> phoneNumbers, Optional<Address> addresses){
         this.name = name;
         this.birthDate = birthDate;
         this.phoneNumbers = phoneNumbers;

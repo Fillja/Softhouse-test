@@ -3,18 +3,18 @@ package src.integration.models;
 import java.util.List;
 import java.util.Optional;
 
-public class PersonModel {
+public class Person {
     public String firstName;
 
     public String lastName;
     
-    public Optional<AddressModel> addresses;
+    public Optional<Address> addresses;
 
-    public Optional<PhoneModel> phoneNumbers;
+    public Optional<Phone> phoneNumbers;
 
-    public List<FamilyModel> familyMembers;
+    public List<Family> familyMembers;
 
-    public PersonModel(String firstName, String lastName, Optional<AddressModel> addresses, Optional<PhoneModel> phoneNumbers,  List<FamilyModel> familyMembers){
+    public Person(String firstName, String lastName, Optional<Address> addresses, Optional<Phone> phoneNumbers,  List<Family> familyMembers){
         this.firstName = firstName;
         this.lastName = lastName;
         this.addresses = addresses;

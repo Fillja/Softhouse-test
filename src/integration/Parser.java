@@ -7,22 +7,22 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import src.integration.models.AddressModel;
-import src.integration.models.FamilyModel;
-import src.integration.models.PersonModel;
-import src.integration.models.PhoneModel;
+import src.integration.models.Address;
+import src.integration.models.Family;
+import src.integration.models.Person;
+import src.integration.models.Phone;
 
 public class Parser {
  
-    public List<PersonModel> ParseFile(String file){
+    public List<Person> ParseFile(String file){
 
         try{     
             BufferedReader reader = Files.newBufferedReader(Paths.get(file));
-            List<PersonModel> personList = new LinkedList<>();
+            List<Person> personList = new LinkedList<>();
 
             //State management
-            PersonModel currentPerson = null;
-            FamilyModel currentFamily = null;
+            Person currentPerson = null;
+            Family currentFamily = null;
             String line;
 
             while((line = reader.readLine()) != null){
@@ -38,7 +38,7 @@ public class Parser {
                         }
                         
                         //Tracking the state by instantiating a new person and resetting family member
-                        currentPerson = new PersonModel(lineValues[1], lineValues[2], Optional.empty(), Optional.empty(), new LinkedList<>());
+                        currentPerson = new Person(lineValues[1], lineValues[2], Optional.empty(), Optional.empty(), new LinkedList<>());
                         personList.add(currentPerson);
                         currentFamily = null;
                     break;
@@ -48,7 +48,7 @@ public class Parser {
                             break;
                         }
 
-                        PhoneModel phoneNumbers = new PhoneModel(lineValues[1], lineValues[2]);
+                        Phone phoneNumbers = new Phone(lineValues[1], lineValues[2]);
                         if(currentFamily != null){
                             currentFamily.phoneNumbers = Optional.of(phoneNumbers);
                         }
@@ -63,7 +63,7 @@ public class Parser {
                         }
 
                         String zip = lineValues.length>3 ? lineValues[3] : null; 
-                        AddressModel addresses = new AddressModel(lineValues[1], lineValues[2], Optional.ofNullable(zip));
+                        Address addresses = new Address(lineValues[1], lineValues[2], Optional.ofNullable(zip));
                         if(currentFamily != null){
                             currentFamily.addresses = Optional.of(addresses);
                         }
@@ -78,7 +78,7 @@ public class Parser {
                         }
 
                         int birthDate = Integer.parseInt(lineValues[2].trim());
-                        currentFamily = new FamilyModel(lineValues[1], birthDate, Optional.empty(), Optional.empty());
+                        currentFamily = new Family(lineValues[1], birthDate, Optional.empty(), Optional.empty());
                         if(currentPerson != null){
                             currentPerson.familyMembers.add(currentFamily);
                         }

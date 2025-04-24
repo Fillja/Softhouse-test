@@ -12,12 +12,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import src.integration.models.FamilyModel;
-import src.integration.models.PersonModel;
+import src.integration.models.Family;
+import src.integration.models.Person;
 
 public class XMLWriter {
     
-    public boolean PrintToXML(List<PersonModel> list){
+    public boolean PrintToXML(List<Person> list){
         try {
             DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = docBuilder.newDocument();
@@ -25,7 +25,7 @@ public class XMLWriter {
             Element rootElement = document.createElement("people");
             document.appendChild(rootElement);
 
-            for(PersonModel person : list){
+            for(Person person : list){
                 // Root - Person
                 Element personElement = CreateXMLElement("person", rootElement, document);
 
@@ -52,9 +52,9 @@ public class XMLWriter {
                 }
 
                 // Family
-                List<FamilyModel> familyList = person.familyMembers;
+                List<Family> familyList = person.familyMembers;
                 if (!familyList.isEmpty()){
-                    for(FamilyModel familyMember : familyList){
+                    for(Family familyMember : familyList){
 
                         Element familyElement = CreateXMLElement("family", personElement, document);
                         CreateXMLElement("name", familyElement, familyMember.name, document);
